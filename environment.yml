@@ -1,0 +1,7 @@
+name: data-management-platform
+channels:
+  - conda-forge
+dependencies:
+  - Flask
+  - Flask-WTF
+  - WTForms
