@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3>{{ project.title }}</h3>
+            <h5>{{ project.description }}</h5>
+        </div>
+
+        <div class="row center">
+            {% if project.dmp %}
+                <a href="{{ url_for('project.form_view', form_id=project.dmp.id) }}">
+                    <button class="btn btn-large">View Data Management Plan</button>
+                </a>
+            {% else %}
+                <a href="{{ url_for('project.form_new', form_type='DMP') }}">
+                    <button class="btn btn-large">Create Data Management Plan</button>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="row center">
+            {% if project.pcf %}
+                <a href="{{ url_for('project.form_view', form_id=project.pcf.id) }}">
+                    <button class="btn btn-large">View Project Completion Form</button>
+                </a>
+            {% else %}
+                <a href="{{ url_for('project.form_new', form_type='DMP') }}">
+                    <button class="btn btn-large">Create Project Completion Form</button>
+                </a>
+            {% endif %}
+        </div>
+
+        <div class="row center">
+            <a href="{{ url_for('project.form_new', form_type='IAF') }}">
+                <button class="btn btn-large">Create Intermediate Archival Form</button>
+            </a>
+        </div>
+
+        
+    </div>
+{% endblock %}

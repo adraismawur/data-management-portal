@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="container">
+        <br><br>
+        <div class="row center">
+            <h3>
+                Create a new project
+            </h3>
+        </div>
+        
+        <form method="POST">
+            <div class="input-field">
+                {{ form.title }}
+                {{ form.title.label }}
+            </div>
+
+            <div class="input-field">
+                {{ form.description }}
+                {{ form.description.label }}
+            </div>
+
+            <button type="submit" class="btn-large green">Create new project</button>
+
+        </form>
+        
+    </div>
+{% endblock %}

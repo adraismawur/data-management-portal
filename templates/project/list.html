@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <div class="section container">
+        <table class="table">
+            <thead>
+                <td>Title</td>
+                <td>Description</td>
+                <td>DMP</td>
+                <td>PCF</td>
+                <td># IAF</td>
+                <td></td>
+            </thead>
+            {% for project in projects %}
+                <tr>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.description }}</td>
+                    <td>{{ 'y' if project.dmp else 'n' }}</td>
+                    <td>{{ 'y' if project.pcf else 'n' }}</td>
+                    <td>{{ len(project.iaf) if project.iaf else 0 }}</td>
+                    <td>
+                        <a href="{{url_for('project.view', project_id=project.id)}}">
+                            <button class="btn">View</button>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

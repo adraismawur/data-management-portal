@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/materialize.min.css') }}"  media="screen,projection"/>
+</head>
+<body>
+    <nav class="light-blue lighten-1" role="navigation">
+        <div class="nav-wrapper container"><a id="logo-container" href="{{ url_for('main.home') }}" class="brand-logo">Data management portal</a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{{ url_for('project.list') }}">Your projects</a></li>
+                <li><a href="{{ url_for('board.overview') }}">Project board</a></li>
+                {% if current_user and current_user.is_anonymous %}
+                    <li><a href="{{ url_for('auth.test_login') }}">Test login</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('auth.log_out') }}">Log out</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="section container"></div>
+            {% for category, message in messages %}
+            {% set class = "blue"%}
+            {% set class = "green" if category == "info" else class %}
+            {% set class = "orange" if category == "warning" else class %}
+            {% set class = "red" if category == "error" else class %}
+                <div class="row">
+                    <div class="col s6 offset-s3 center {{class}}">
+                        <h6>{{ message }}</h6>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <div class="section no-pad-bot" id="index-banner">
+        {% block body -%} {%- endblock %}
+    </div>
+    
+    <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.min.js')}}"></script>
+</body>
+</html>
+
